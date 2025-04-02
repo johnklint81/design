@@ -3,7 +3,11 @@ import 'package:lab2/widgets/difficulty_control.dart';
 import 'package:lab2/widgets/ingredient_control.dart';
 import 'package:lab2/widgets/kitchen_control.dart';
 import 'package:lab2/widgets/price_control.dart';
+import 'package:provider/provider.dart';
 
+import '../ui_controller.dart';
+import '../widgets/recipe_detail.dart';
+import '../widgets/recipe_list.dart';
 import '../widgets/time_control.dart';
 
 class MainView extends StatelessWidget {
@@ -12,7 +16,7 @@ class MainView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Row(children: [_controlPanel(context), _recipeArea(context)]),
+      body: Row(children: [_controlPanel(context), const RecipeArea()]),
     );
   }
 
@@ -24,10 +28,13 @@ class MainView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Text("Receptsök"),
+          Align(
+          alignment: Alignment.center,
+          child: const Text("Receptsök"),
+          ),
           const Text(
             'Hitta recept som passar genom att ändra '
-            'inställningarna nedanför',
+                'inställningarna nedanför',
           ),
           Align(
             alignment: Alignment.centerRight,
@@ -59,9 +66,21 @@ class MainView extends StatelessWidget {
     );
   }
 
-  Widget _recipeArea(context) {
-    return Expanded(
-      child: Container(color: const Color.fromARGB(255, 204, 216, 176)),
-    );
+}
+
+class RecipeArea extends StatelessWidget {
+  const RecipeArea({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    var uiController = context.watch<UIController>();
+    Widget contents;
+
+    if (uiController.showRecipeList) {
+      contents = RecipeList();
+    } else {
+      contents = RecipeDetail(uiController.selectedRecipe!);
+    }
+    return Expanded(child: contents);
   }
 }
