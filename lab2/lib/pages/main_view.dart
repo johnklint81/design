@@ -5,6 +5,14 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Placeholder());
+    return Scaffold(
+        body: Row(children: [_controlPanel(context), _recipeArea(context)]),
+    );
+  }
+  Widget _controlPanel(context, {double width = 320}) {
+    return Placeholder();
+  }
+  Widget _recipeArea(context) {
+    return Expanded(child: Placeholder());
   }
 }
