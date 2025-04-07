@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab2/model/recipe_database/ingredient.dart';
+import 'package:lab3/model/recipe_database/ingredient.dart';
 
 class Recipe {
   final String name;

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab2/constants/assets.dart';
+import 'package:lab3/constants/assets.dart';
 
 class Difficulty {
   static const showAll = 'Alla';

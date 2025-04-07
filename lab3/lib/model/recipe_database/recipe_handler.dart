@@ -2,9 +2,9 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:lab2/model/recipe_database/recipe.dart';
-import 'package:lab2/model/recipe_database/search_filter.dart';
-import 'package:lab2/util/functions.dart';
+import 'package:lab3/model/recipe_database/recipe.dart';
+import 'package:lab3/model/recipe_database/search_filter.dart';
+import 'package:lab3/util/functions.dart';
 
 class RecipeHandler extends ChangeNotifier {
   final List<Recipe> _recipes = [];

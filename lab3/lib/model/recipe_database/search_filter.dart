@@ -1,4 +1,4 @@
-import 'package:lab2/model/recipe_database/recipe.dart';
+import 'package:lab3/model/recipe_database/recipe.dart';
 
 class SearchFilter {
   String? difficulty;
