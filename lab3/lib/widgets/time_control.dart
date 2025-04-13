@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../app_theme.dart';
+import '../constants/assets.dart';
+
 class TimeControl extends StatefulWidget {
   const TimeControl({super.key});
 
@@ -24,7 +27,17 @@ class _TimeControlState extends State<TimeControl> {
             });
           },
         ),
-        Text('${_time.round()} minuter',)
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Image.asset(Assets.timeIcon, height: 16),
+            Padding(
+              padding: const EdgeInsets.only(right: AppTheme.paddingLarge, left: AppTheme.paddingSmall),
+              child: Text('${_time.round()} minuter'),
+            ),
+
+          ],
+        )
       ],
     );
   }

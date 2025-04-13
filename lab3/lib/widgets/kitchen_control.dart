@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../app_theme.dart';
 import '../util/cuisine.dart';
+import '../model/recipe_database/recipe_handler.dart';
 
 class KitchenControl extends StatelessWidget {
   const KitchenControl({super.key});
@@ -7,12 +10,13 @@ class KitchenControl extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const labels = Cuisine.labels;
+    var recipeHandler = Provider.of<RecipeHandler>(context, listen: false);
 
     return Row(
-      mainAxisSize: MainAxisSize.min, // don't expand
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         const Text("Kök"),
-        const SizedBox(width: 12),
+        SizedBox(width: AppTheme.paddingSmall),
         DropdownMenu<String>(
           width: 164,
           enableFilter: false,
@@ -23,9 +27,21 @@ class KitchenControl extends StatelessWidget {
           // Starts with the first element selected
           dropdownMenuEntries: [
             for (int i = 0; i < labels.length; i++)
-              DropdownMenuEntry(value: labels[i], label: labels[i]),
+              DropdownMenuEntry(
+                leadingIcon:
+                    labels[i] == Cuisine.showAll
+                        ? null
+                        : Cuisine.flag(
+                          labels[i],
+                          width: AppTheme.paddingMedium,
+                        ),
+                value: labels[i],
+                label: labels[i],
+              ),
           ],
-          onSelected: (value) {},
+          onSelected: (value) {
+            recipeHandler.setCuisine(value);
+          },
         ),
       ],
     );

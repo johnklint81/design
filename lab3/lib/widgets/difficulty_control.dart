@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../app_theme.dart';
 import '../util/difficulty.dart';
 
 class DifficultyControl extends StatefulWidget {
@@ -18,7 +19,16 @@ class _DifficultyControlState extends State<DifficultyControl> {
         for (final label in Difficulty.labels)
           RadioListTile<String>(
             dense: true,
-            title: Text(label),
+            title: label == Difficulty.showAll
+            ? Text(label)
+            : Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Difficulty.icon(label, width: AppTheme.paddingHUGE)!,
+                SizedBox(width: AppTheme.paddingMedium),
+                Text(label)
+              ],
+            ),
             value: label,
             groupValue: _difficulty,
             onChanged: (value) {
