@@ -15,9 +15,14 @@ class RecipeList extends StatelessWidget {
     return ListView(
       padding: const EdgeInsets.all(8),
       children: [
-          for (final recipe in recipes)
-            RecipeListItem(recipe, onTap: () { uiController.selectRecipe(recipe);},)
-            ],
+        for (final recipe in recipes)
+          RecipeListItem(
+            recipe,
+            onTap: () {
+              uiController.selectRecipe(recipe);
+            },
+          ),
+      ],
     );
   }
 }
