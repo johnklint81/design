@@ -27,6 +27,7 @@ class RecipeListItem extends StatelessWidget {
           height: 128,
           child: Row(
             children: [
+              Padding(padding: EdgeInsets.only(left: AppTheme.paddingMedium)),
               _image(recipe),
               Padding(padding: EdgeInsets.only(left: AppTheme.paddingSmall)),
               Expanded(
@@ -34,15 +35,14 @@ class RecipeListItem extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Padding(padding: EdgeInsets.all(AppTheme.paddingTiny)),
                     Text(recipe.name, style: AppTheme.mediumHeading),
                     Text(
                       recipe.description,
                       overflow: TextOverflow.ellipsis,
                       maxLines: 2,
                     ),
-                    Padding(
-                      padding: EdgeInsets.only(top: AppTheme.paddingTiny),
-                    ),
+                    Padding(padding: EdgeInsets.all(AppTheme.paddingTiny)),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
@@ -50,23 +50,17 @@ class RecipeListItem extends StatelessWidget {
                           recipe.mainIngredient,
                           width: AppTheme.paddingMedium,
                         )!,
-                        Padding(
-                          padding: EdgeInsets.only(left: AppTheme.paddingTiny),
-                        ),
+                        Padding(padding: EdgeInsets.all(AppTheme.paddingTiny)),
                         Difficulty.icon(
                           recipe.difficulty,
                           width: AppTheme.paddingHUGE,
                         )!,
-                        Padding(
-                          padding: EdgeInsets.only(left: AppTheme.paddingSmall),
-                        ),
+                        Padding(padding: EdgeInsets.all(AppTheme.paddingTiny)),
                         Text(
                           "${recipe.time} minuter",
                           style: AppTheme.smallText,
                         ),
-                        Padding(
-                          padding: EdgeInsets.only(left: AppTheme.paddingSmall),
-                        ),
+                        Padding(padding: EdgeInsets.all(AppTheme.paddingTiny)),
                         Text("${recipe.price} kr", style: AppTheme.smallText),
                       ],
                     ),
@@ -82,16 +76,26 @@ class RecipeListItem extends StatelessWidget {
 
   @override
   Widget _image(recipe) {
-    var square = ClipRect(
+    var roundedImage = ClipRRect(
+      borderRadius: BorderRadius.circular(12), // adjust for more/less rounding
       child: SizedBox(
-        width: 104, // Square width
-        height: 104, // Square height
-        child: FittedBox(fit: BoxFit.cover, child: recipe.image),
+        width: 104,
+        height: 104,
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: recipe.image,
+        ),
       ),
     );
+
     var flagImage = Cuisine.flag(recipe.cuisine, width: AppTheme.paddingLarge);
+
     return Stack(
-      children: [square, Positioned(bottom: 8, right: 8, child: flagImage!)],
+      children: [
+        roundedImage,
+        Positioned(bottom: 8, right: 8, child: flagImage!),
+      ],
     );
   }
+
 }
