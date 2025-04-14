@@ -100,7 +100,7 @@ class RecipeDetail extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(
                               top: AppTheme.paddingSmall,
-                              left: AppTheme.paddingMedium,
+                              left: AppTheme.paddingLarge,
                               right: AppTheme.paddingMedium,
                             ),
                             child: Column(
