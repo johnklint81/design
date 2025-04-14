@@ -16,54 +16,81 @@ class RecipeListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Container(
-        height: 128,
-        child: Row(
-          children: [
-            _image(recipe),
-            Padding(padding: EdgeInsets.only(left: AppTheme.paddingSmall)),
-            Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(recipe.name, style: AppTheme.mediumHeading),
-                  Text(
-                    recipe.description,
-                    overflow: TextOverflow.ellipsis,
-                    maxLines: 2,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+      elevation: 4,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(12),
+        splashColor: Colors.blue.withAlpha(30),
+        onTap: onTap,
+        child: Container(
+          height: 128,
+          child: Row(
+            children: [
+              _image(recipe),
+              Padding(padding: EdgeInsets.only(left: AppTheme.paddingSmall)),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(recipe.name, style: AppTheme.mediumHeading),
+                    Text(
+                      recipe.description,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(top: AppTheme.paddingTiny),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        MainIngredient.icon(recipe.mainIngredient, width: AppTheme.paddingMedium)!,
-                        Padding(padding: EdgeInsets.only(left: AppTheme.paddingTiny)),
-                        Difficulty.icon(recipe.difficulty, width: AppTheme.paddingHuge)!,
-                        Padding(padding: EdgeInsets.only(left: AppTheme.paddingSmall)),
-                        Text("${recipe.time} minuter", style: AppTheme.smallText),
-                        Padding(padding: EdgeInsets.only(left: AppTheme.paddingSmall)),
+                        MainIngredient.icon(
+                          recipe.mainIngredient,
+                          width: AppTheme.paddingMedium,
+                        )!,
+                        Padding(
+                          padding: EdgeInsets.only(left: AppTheme.paddingTiny),
+                        ),
+                        Difficulty.icon(
+                          recipe.difficulty,
+                          width: AppTheme.paddingHUGE,
+                        )!,
+                        Padding(
+                          padding: EdgeInsets.only(left: AppTheme.paddingSmall),
+                        ),
+                        Text(
+                          "${recipe.time} minuter",
+                          style: AppTheme.smallText,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: AppTheme.paddingSmall),
+                        ),
                         Text("${recipe.price} kr", style: AppTheme.smallText),
-                  ]),
-                ],  // Children
+                      ],
+                    ),
+                  ], // Children
+                ),
               ),
-            ),
-          ],  // Children
+            ], // Children
+          ),
         ),
       ),
     );
   }
+
   @override
   Widget _image(recipe) {
     var square = ClipRect(
       child: SizedBox(
-        width: 104,  // Square width
+        width: 104, // Square width
         height: 104, // Square height
         child: FittedBox(fit: BoxFit.cover, child: recipe.image),
       ),
     );
     var flagImage = Cuisine.flag(recipe.cuisine, width: AppTheme.paddingLarge);
     return Stack(
-      children: [square, Positioned(bottom: 8, right: 8, child: flagImage!)]
+      children: [square, Positioned(bottom: 8, right: 8, child: flagImage!)],
     );
   }
 }
