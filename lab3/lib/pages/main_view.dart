@@ -6,6 +6,7 @@ import 'package:lab3/widgets/price_control.dart';
 import 'package:provider/provider.dart';
 
 import '../ui_controller.dart';
+import '../widgets/logo.dart';
 import '../widgets/recipe_detail.dart';
 import '../widgets/recipe_list.dart';
 import '../widgets/time_control.dart';
@@ -30,7 +31,7 @@ class MainView extends StatelessWidget {
         children: [
           Align(
           alignment: Alignment.center,
-          child: const Text("Receptsök"),
+          child: Logo(),
           ),
           const Text(
             'Hitta recept som passar genom att ändra '
