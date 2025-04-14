@@ -61,18 +61,17 @@ class RecipeHandler extends ChangeNotifier {
     _matchedRecipes.clear();
 
     for (final recipe in recipes) {
-      recipe.match = _filter.matchAgainstRecipe(recipe);
-      _matchedRecipes.add(recipe);
-    }
-    _matchedRecipes.sort((r1, r2) {
-      if (r1.match == r2.match) {
-        return 0;
-      } else {
-        return r1.match - r2.match < 0 ? 1 : -1;
+      final matchScore = _filter.matchAgainstRecipe(recipe);
+      if (matchScore > 0) {
+        recipe.match = matchScore;
+        _matchedRecipes.add(recipe);
       }
-    });
+    }
+
+    _matchedRecipes.sort((r1, r2) => r2.match.compareTo(r1.match));
     notifyListeners();
   }
+
 
   void _loadRecipes() async {
     //dbugPrint('_loadRecipes');

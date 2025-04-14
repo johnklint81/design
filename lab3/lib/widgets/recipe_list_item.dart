@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:lab3/widgets/difficulty_control.dart';
 import '../app_theme.dart';
-import '../model/recipe_database/ingredient.dart';
 import '../model/recipe_database/recipe.dart';
 import '../util/cuisine.dart';
 import '../util/difficulty.dart';
@@ -23,7 +21,7 @@ class RecipeListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
         splashColor: Colors.blue.withAlpha(30),
         onTap: onTap,
-        child: Container(
+        child: SizedBox(
           height: 128,
           child: Row(
             children: [

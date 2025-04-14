@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../app_theme.dart';
+import '../model/recipe_database/recipe_handler.dart';
 import '../util/difficulty.dart';
 
 class DifficultyControl extends StatefulWidget {
@@ -14,6 +16,8 @@ class _DifficultyControlState extends State<DifficultyControl> {
 
   @override
   Widget build(BuildContext context) {
+    var recipeHandler = Provider.of<RecipeHandler>(context, listen: false);
+
     return Column(
       children: [
         for (final label in Difficulty.labels)
@@ -34,6 +38,7 @@ class _DifficultyControlState extends State<DifficultyControl> {
             onChanged: (value) {
               setState(() {
                 _difficulty = value!;
+                recipeHandler.setDifficulty(_difficulty);
               });
             },
           ),

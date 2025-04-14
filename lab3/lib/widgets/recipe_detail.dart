@@ -46,7 +46,7 @@ class RecipeDetail extends StatelessWidget {
                   children: [
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: AppTheme.paddingMedium),
-                      child: Container(
+                      child: SizedBox(
                         width: 240,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
