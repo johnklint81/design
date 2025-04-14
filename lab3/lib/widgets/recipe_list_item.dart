@@ -18,6 +18,7 @@ class RecipeListItem extends StatelessWidget {
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         splashColor: Colors.blue.withAlpha(30),
