@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../model/recipe_database/recipe_handler.dart';
 
 class TimeControl extends StatefulWidget {
   const TimeControl({super.key});
@@ -12,6 +15,7 @@ class _TimeControlState extends State<TimeControl> {
 
   @override
   Widget build(BuildContext context) {
+    var recipeHandler = Provider.of<RecipeHandler>(context, listen: false);
     return Column(
       children: [
         Slider(
@@ -21,6 +25,7 @@ class _TimeControlState extends State<TimeControl> {
           onChanged: (double value) {
             setState(() {
               _time = value;
+              recipeHandler.setMaxPrice(_time.toInt());
             });
           },
         ),
